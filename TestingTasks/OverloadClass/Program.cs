@@ -19,14 +19,16 @@ namespace TestingTasks
         }
         public Money(decimal rub, decimal cent, decimal percent)
         {
-            if(percent >= 100)
+            if (percent >= 100)
             {
                 Console.WriteLine("Ошибка.");
-            } else {
-            cent += rub * 100;
-            rub = cent - (cent * percent / 100);
-            sum = Math.Round(rub / 100, 2);
-            Console.WriteLine($"Сумма за вычетом скидки равна {sum}");
+            }
+            else
+            {
+                cent += rub * 100;
+                rub = cent - (cent * percent / 100);
+                sum = Math.Round(rub / 100, 2);
+                Console.WriteLine($"Сумма за вычетом скидки равна {sum}");
             }
         }
     }
@@ -39,8 +41,8 @@ namespace TestingTasks
             ob[1] = new Money(500, 68);
             ob[2] = new Money(500, 720, 5);
             ob[3] = new Money(250, 0, 50);
-            ob[4] = new Money(1500, 250, 100);         
+            ob[4] = new Money(1500, 250, 100);
             Console.ReadLine();
-        }        
+        }
     }
 }
