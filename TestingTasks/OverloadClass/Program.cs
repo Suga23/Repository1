@@ -20,7 +20,7 @@ namespace OverloadClass
             //ob.Add(new Cargo() { machineMark = "Зил", speed = 120, color = "Красный.", wheelsType = "Летняя резина", wheels = 8, bodyType = "Открытый" });
             Console.ReadLine();
         }
-    }
+    }////алвтмлв
 }
 //                      string machineMark, double speed, string color, string wheelsType, int wheels,  string bodyType) : base(machineMark, speed, wheelsType, color
 //, speed = 120, color = "Красный", wheelsType = "Летняя резина", wheels = 8, 
