@@ -43,7 +43,7 @@ namespace OverloadClass
                 Mark += st.academicPerformance[i];
             }
 
-            Console.WriteLine($"Фамилия: {st.lastName}\nИнициалы: {st.initials}\nНомер группы: {st.groupNumber}\nУспеваемость: {Mark1}\nСредний бал: {Mark / st.academicPerformance.Length}");
+            Console.WriteLine($"Фамилия: {st.lastName}\nИнициалы: {st.initials}\nНомер группы: {st.groupNumber}\nУспеваемость: {Mark1}\nСредний бал: {Mark / st.academicPerformance.Length}\n");
 
         }
         class Program
@@ -51,11 +51,22 @@ namespace OverloadClass
             static void Main(string[] args)
             {
 
-                Middle[] students = new Middle[10];
+                Middle[] students = new Middle[5];
                 Console.WriteLine("Введите данные первого студента: ");
-                int[] arr = new int[5] { 5, 3, 5, 3, 4 };
-                students[0] = new Middle("Belugin", "P.A.", 1, arr);
-                students[0].Show();
+                int[] arr0 = new int[5] { 5, 5, 5, 3, 4 };
+                int[] arr1 = new int[5] { 5, 5, 4, 5, 4 };
+                int[] arr2 = new int[5] { 5, 5, 4, 4, 5 };
+                int[] arr3 = new int[5] { 3, 4, 5, 5, 4 };
+                int[] arr4 = new int[5] { 5, 5, 3, 3, 4 };
+                students[0] = new Middle("Белугин", "П.А.", 1, arr0);
+                students[1] = new Middle("Датко", "Т.Б.", 1, arr1);
+                students[2] = new Middle("Зуев", "Д.А.", 1, arr2);
+                students[3] = new Middle("Карелов", "М.Б.", 1, arr3);
+                students[4] = new Middle("Машин", "Г.И.", 1, arr4);
+                for (int i = 0; i < students.Length; i++)
+                {
+                    students[i].Show();
+                }             
                 Console.ReadLine();
             }
         }
