@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingTasks", "TestingTask
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverloadClass", "OverloadClass\OverloadClass.csproj", "{9BB80D3F-5D5A-41D6-A2AB-9FBC036048DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Train", "Train\Train.csproj", "{7781CFD6-2640-4E4E-A35B-2AF41613A4B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9BB80D3F-5D5A-41D6-A2AB-9FBC036048DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BB80D3F-5D5A-41D6-A2AB-9FBC036048DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BB80D3F-5D5A-41D6-A2AB-9FBC036048DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7781CFD6-2640-4E4E-A35B-2AF41613A4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7781CFD6-2640-4E4E-A35B-2AF41613A4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7781CFD6-2640-4E4E-A35B-2AF41613A4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7781CFD6-2640-4E4E-A35B-2AF41613A4B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

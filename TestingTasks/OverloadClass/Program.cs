@@ -23,7 +23,7 @@ namespace OverloadClass
     {
         Student st;
         int Mark;
-        int Mark1;
+        int[] Mark1;
         public Middle(string lN, string ini, int gN, params int[] aP)
         {
             st.lastName = lN;
@@ -31,20 +31,29 @@ namespace OverloadClass
             st.groupNumber = gN;
             st.academicPerformance = aP;
         }
-        public void Show()
+        public void AcademicPerfomance()
         {
+
             for (int i = 0; i < st.academicPerformance.Length; i++)
             {
-                Mark1 = st.academicPerformance[i];
+                Mark1 = st.academicPerformance;
             }
-
+            return (int)Mark1.GetValue(st.academicPerformance.Length);
+        }
+        private int MiddleMark()
+        {
             for (int i = 0; i < st.academicPerformance.Length; i++)
             {
                 Mark += st.academicPerformance[i];
             }
+            return Mark / st.academicPerformance.Length;
+        }
 
-            Console.WriteLine($"Фамилия: {st.lastName}\nИнициалы: {st.initials}\nНомер группы: {st.groupNumber}\nУспеваемость: {Mark1}\nСредний бал: {Mark / st.academicPerformance.Length}\n");
+        public void Show()
+        {
 
+
+            Console.WriteLine($"Фамилия: {st.lastName}\nИнициалы: {st.initials}\nНомер группы: {st.groupNumber}\nУспеваемость: {AcademicPerfomance()}\nСредний бал: {MiddleMark()}\n");
         }
         class Program
         {
@@ -66,7 +75,7 @@ namespace OverloadClass
                 for (int i = 0; i < students.Length; i++)
                 {
                     students[i].Show();
-                }             
+                }
                 Console.ReadLine();
             }
         }
