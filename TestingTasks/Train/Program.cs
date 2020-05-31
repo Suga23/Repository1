@@ -11,51 +11,61 @@ using System.Threading.Tasks;
  * упорядочить элементы по номерам поездов. Добавить возможность вывода информации о поезде,
  * номер которого введен пользователем. Добавить возможность сортировки массива по пункту
  * назначения, причем поезда с одинаковыми пунктами назначения должны быть упорядочены
- * по времени отправления.*/
-namespace OverloadClass
+ * по времени отправления.
+ double TrainSpeed = 120;
+ double Stolbovaya = 10;
+ double time;
+ */
+namespace Train
 {
     struct Train
     {
-        public string des;
-        public int tN;
-        public int dth;
-        public int dtm;
-        public string tI;
+        public string Destination;
+        public int TrainNumber;
+        public DepartureTime DepartureTime;
     }
     class CrazyTrain
     {
         Train tr;
-        double TrainSpeed = 120;
-        double Stolbovaya = 10;
-        double time;
-        public CrazyTrain(string Destination, int TrainNumber, int DepartureTimeMinHour, int DepartureTimeMin, string TrainInfo)
+        
+        public CrazyTrain(string Destination, int TrainNumber, DepartureTime DepartureTime)
         {
-            tr.des = Destination;
-            tr.tN = TrainNumber;
-            tr.dth = DepartureTimeMinHour;
-            tr.dtm = DepartureTimeMin;
-            tr.tI = TrainInfo;
+            tr.Destination = Destination;
+            tr.TrainNumber = TrainNumber;
+            tr.DepartureTime = DepartureTime;
         }
-        private string CalculateTravelTime()
+        //private void SortByDepatrure(DepartureTime DepartureTime)
+        //{
+        //    for (int i =)
+        //    {
+
+        //    }
+        //}
+        public void TrainInfo() 
         {
-            time = Stolbovaya / TrainSpeed;
-            return $"{Math.Round(time, 2) * 100}";
-        }
-        public void Show()
-        {
-            Console.WriteLine($"{CalculateTravelTime()}");
+            Console.WriteLine($"Информация о поезде №{tr.TrainNumber}:\nНаправление: {tr.Destination}\nВремя отправления: {tr.DepartureTime.SummerTime()}\n");
         }
     }
     /*создать класс, в котором запечатаны методы создания поезда, направление, число вагонов, кол-во пассажиров, даты изготовления, модель, скорость, масса, кол-во вагонов, всё это пойдёт на место TrainInfo.
     * всё это передаётся в записи номера поезда 
     Создаём конструктор который массивом object принимает в себя номер поезда и станцию
-    добавить метод общих данных о поезде, расчёта времени в пути, направление */
+    добавить метод общих данных о поезде, расчёта времени в пути, направление
+    Создать метод, в котором будет массив типа Object, куда будут передаваться параметры, а в методе Main() вызвать его.
+         */
     class Program
     {
         static void Main(string[] args)
         {
-            CrazyTrain ob = new CrazyTrain("Stolbovaya", 154, 16, 45, "Информация о поезде");
-            ob.Show();
+            CrazyTrain[] trains = new CrazyTrain[5];
+            trains[0] = new CrazyTrain("sdf", 1, new DepartureTime(10, 30));
+            trains[1] = new CrazyTrain("sdf", 2, new DepartureTime(18, 30));
+            trains[2] = new CrazyTrain("sdf", 3, new DepartureTime(15, 30));
+            trains[3] = new CrazyTrain("sdf", 4, new DepartureTime(14, 20));
+            trains[4] = new CrazyTrain("sdf", 5, new DepartureTime(18, 50));
+            for (int i = 0; i < trains.Length; i++)
+            {
+                trains[i].TrainInfo();
+            }
             Console.ReadLine();
         }
     }
