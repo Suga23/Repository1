@@ -27,13 +27,49 @@ namespace Train
     class CrazyTrain
     {
         Train tr;
-        
         public CrazyTrain(string Destination, int TrainNumber, DepartureTime DepartureTime)
         {
             tr.Destination = Destination;
             tr.TrainNumber = TrainNumber;
             tr.DepartureTime = DepartureTime;
+        }        
+        public void SortByTrainNumber(params CrazyTrain[] arr)
+        {
+            CrazyTrain k;
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (arr[i].tr.TrainNumber > arr[j].tr.TrainNumber)
+                    {
+                        k = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = k;
+                    }
+                }
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine($"Информация о поезде №{arr[i].tr.TrainNumber}:\nНаправление: {arr[i].tr.Destination}\nВремя отправления: {arr[i].tr.DepartureTime.SummerTime()}\n");
+            }
         }
+        public void SortByDestination(params CrazyTrain[] arr)
+        {
+            CrazyTrain k;
+            for (int i = 0; i < arr.Length - 1; i++)
+            {
+                for (int j = i + 1; j < arr.Length; j++)
+                {
+                    if (arr[i].tr.TrainNumber > arr[j].tr.TrainNumber)
+                    {
+                        k = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = k;
+                    }
+                }
+            }
+        }
+        #region
         //private void SortByDepatrure(DepartureTime DepartureTime)
         //{
         //    for (int i =)
@@ -41,6 +77,7 @@ namespace Train
 
         //    }
         //}
+        #endregion
         public void TrainInfo() 
         {
             Console.WriteLine($"Информация о поезде №{tr.TrainNumber}:\nНаправление: {tr.Destination}\nВремя отправления: {tr.DepartureTime.SummerTime()}\n");
@@ -57,15 +94,16 @@ namespace Train
         static void Main(string[] args)
         {
             CrazyTrain[] trains = new CrazyTrain[5];
-            trains[0] = new CrazyTrain("sdf", 1, new DepartureTime(10, 30));
-            trains[1] = new CrazyTrain("sdf", 2, new DepartureTime(18, 30));
-            trains[2] = new CrazyTrain("sdf", 3, new DepartureTime(15, 30));
-            trains[3] = new CrazyTrain("sdf", 4, new DepartureTime(14, 20));
-            trains[4] = new CrazyTrain("sdf", 5, new DepartureTime(18, 50));
-            for (int i = 0; i < trains.Length; i++)
-            {
-                trains[i].TrainInfo();
-            }
+            trains[0] = new CrazyTrain("4", 4, new DepartureTime(10, 30));
+            trains[1] = new CrazyTrain("2", 2, new DepartureTime(18, 30));
+            trains[2] = new CrazyTrain("5", 5, new DepartureTime(15, 30));
+            trains[3] = new CrazyTrain("1", 1, new DepartureTime(14, 20));
+            trains[4] = new CrazyTrain("3", 3, new DepartureTime(18, 50));
+            //for (int i = 0; i < trains.Length; i++)
+            //{
+            //    trains[i].TrainInfo();
+            //}
+            trains[1].SortByTrainNumber(trains);
             Console.ReadLine();
         }
     }
