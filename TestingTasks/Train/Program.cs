@@ -11,7 +11,7 @@ using System.Threading.Tasks;
  * упорядочить элементы по номерам поездов. Добавить возможность вывода информации о поезде,
  * номер которого введен пользователем. Добавить возможность сортировки массива по пункту
  * назначения, причем поезда с одинаковыми пунктами назначения должны быть упорядочены
- * по времени отправления.
+ * по времени отправления. Как получить мой архив гугл.
  double TrainSpeed = 120;
  double Stolbovaya = 10;
  double time;
@@ -32,7 +32,7 @@ namespace Train
             tr.Destination = Destination;
             tr.TrainNumber = TrainNumber;
             tr.DepartureTime = DepartureTime;
-        }        
+        }
         public void SortByTrainNumber(params CrazyTrain[] arr)
         {
             CrazyTrain k;
@@ -53,20 +53,26 @@ namespace Train
                 Console.WriteLine($"Информация о поезде №{arr[i].tr.TrainNumber}:\nНаправление: {arr[i].tr.Destination}\nВремя отправления: {arr[i].tr.DepartureTime.SummerTime()}\n");
             }
         }
-        public void SortByDestination(params CrazyTrain[] arr)
+        public void SortByDestination(CrazyTrain[] arr, CrazyTrain[] arr1)
         {
-            CrazyTrain k;
-            for (int i = 0; i < arr.Length - 1; i++)
+            
+            for (int i = 0; i < arr.Length; i++)
             {
                 for (int j = i + 1; j < arr.Length; j++)
                 {
-                    if (arr[i].tr.TrainNumber > arr[j].tr.TrainNumber)
+                    if(arr[i].tr.Destination.CompareTo(arr[j].tr.Destination))
                     {
-                        k = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = k;
+
                     }
                 }
+            }
+
+            Array.Sort(arr);
+
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine($"Информация о поезде №{arr[i].tr.TrainNumber}:\nНаправление: {arr[i].tr.Destination}\nВремя отправления: {arr[i].tr.DepartureTime.SummerTime()}\n");
             }
         }
         #region
@@ -83,27 +89,26 @@ namespace Train
             Console.WriteLine($"Информация о поезде №{tr.TrainNumber}:\nНаправление: {tr.Destination}\nВремя отправления: {tr.DepartureTime.SummerTime()}\n");
         }
     }
-    /*создать класс, в котором запечатаны методы создания поезда, направление, число вагонов, кол-во пассажиров, даты изготовления, модель, скорость, масса, кол-во вагонов, всё это пойдёт на место TrainInfo.
-    * всё это передаётся в записи номера поезда 
-    Создаём конструктор который массивом object принимает в себя номер поезда и станцию
-    добавить метод общих данных о поезде, расчёта времени в пути, направление
-    Создать метод, в котором будет массив типа Object, куда будут передаваться параметры, а в методе Main() вызвать его.
-         */
     class Program
     {
         static void Main(string[] args)
         {
             CrazyTrain[] trains = new CrazyTrain[5];
-            trains[0] = new CrazyTrain("4", 4, new DepartureTime(10, 30));
-            trains[1] = new CrazyTrain("2", 2, new DepartureTime(18, 30));
-            trains[2] = new CrazyTrain("5", 5, new DepartureTime(15, 30));
-            trains[3] = new CrazyTrain("1", 1, new DepartureTime(14, 20));
-            trains[4] = new CrazyTrain("3", 3, new DepartureTime(18, 50));
+            trains[0] = new CrazyTrain("Tsaricino", 4, new DepartureTime(10, 30));
+            trains[1] = new CrazyTrain("Stolbovaya", 2, new DepartureTime(18, 30));
+            trains[2] = new CrazyTrain("Red Builder", 5, new DepartureTime(15, 30));
+            trains[3] = new CrazyTrain("Butovo", 1, new DepartureTime(14, 20));
+            trains[4] = new CrazyTrain("Podolsk", 3, new DepartureTime(18, 50));
             //for (int i = 0; i < trains.Length; i++)
             //{
             //    trains[i].TrainInfo();
             //}
-            trains[1].SortByTrainNumber(trains);
+
+            //trains[1].SortByTrainNumber(trains);
+            for (int i = 0; i < trains.Length; i++)
+            {
+                trains[0].SortByDestination(trains[i], trains[i + 1]);
+            }           
             Console.ReadLine();
         }
     }
