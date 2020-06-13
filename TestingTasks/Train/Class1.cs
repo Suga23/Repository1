@@ -47,10 +47,49 @@ namespace Train
                     Console.WriteLine("Введите корректное время!");
                 }
             }
-        }
+        }        
         public string SummerTime()
         {
             return $"{hour}:{minute}";
         }
+        public static bool operator >(DepartureTime op1, DepartureTime op2)
+        {
+            if (op1.h > op2.h)
+            {
+                return true;
+            }
+            else if (op1.h == op2.h && op1.m > op2.m)
+            {
+                return true;
+            }
+            else if (op1.h == op2.h && op1.m == op2.m)
+            {
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool operator <(DepartureTime op1, DepartureTime op2)
+        {
+            if (op1.h < op2.h)
+            {
+                return true;
+            }
+            else if (op1.h == op2.h && op1.m < op2.m)
+            {
+                return true;
+            }
+            else if (op1.h == op2.h && op1.m == op2.m)
+            {
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
