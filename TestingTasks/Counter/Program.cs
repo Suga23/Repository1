@@ -15,46 +15,72 @@ namespace Counter
 {
     class Counter
     {
-        int a;
+        int a, dia_min, dia_max;
         public Counter()
         {
             a = 0;
         }
-        public Counter(int a)
+        public Counter(int a, int dia_min, int dia_max)
         {
             this.a = a;
+            this.dia_min = dia_min;
+            this.dia_max = dia_max;
         }
 
-        public int Increment_(int dia)
+        public int Increment_()
         {
-            while(a < dia)
+            while(A < dia_max)
             {
-                a++;
+                A++;
             }
-            return a;
+            return A;
         }
-        public int Decrement_(int dia)
+        public int Decrement_()
         {
-            while(a > dia)
+            while(A > dia_min)
             {
-                a--;                
+                A--;
             }
-            Console.WriteLine(a_Counter);
-            return a;
+            return A;
         }
-        public int a_Counter
+        private int A
         {
-            get {
-                return a;
-            }            
+            get
+            {
+                if (diapason(a, dia_min, dia_max)) {
+                    Console.WriteLine(a);
+                    return a;
+                } else
+                {
+                    throw new ArgumentOutOfRangeException("Нарушение диапазона.");
+                }
+            }
+            set
+            {
+                if(diapason(a, dia_min, dia_max))
+                {
+                    a = value;
+                } else
+                {
+                    throw new ArgumentOutOfRangeException("Нарушение диапазона.");
+                }
+            }
+        }
+        private bool diapason(int a, int dia_min, int dia_max)
+        {
+            if (a >= dia_min && a <= dia_max && dia_min < dia_max)
+            {
+                return true;
+            }
+            return false;
         }
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Counter obj = new Counter(15);
-            Console.WriteLine(obj.Increment_(100));
+            Counter obj = new Counter(15, -15, 321);
+            Console.WriteLine($"Положение точки A :\n{obj.Decrement_()}");
             Console.ReadLine();
         }
     }
