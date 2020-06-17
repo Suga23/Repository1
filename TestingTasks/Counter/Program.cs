@@ -5,7 +5,8 @@ using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
-/*Описать класс, реализующий десятичный счетчик, 
+using System.Threading;
+/* Описать класс, реализующий десятичный счетчик, 
  * который может увеличивать или уменьшать свое значение на единицу в заданном диапазоне. 
  * Предусмотреть инициализацию счетчика значениями по умолчанию и произвольными значениями. 
  * Счетчик имеет два метода: увеличения и уменьшения, — и свойство, 
@@ -15,72 +16,94 @@ namespace Counter
 {
     class Counter
     {
-        int a, dia_min, dia_max;
+        int dia_min, dia_max;
         public Counter()
         {
-            a = 0;
+            dia_min = 0;
+            dia_max += dia_min + 1;
         }
-        public Counter(int a, int dia_min, int dia_max)
+        public Counter(int dia_min, int dia_max)
         {
-            this.a = a;
             this.dia_min = dia_min;
             this.dia_max = dia_max;
         }
 
         public int Increment_()
         {
-            while(A < dia_max)
+            while(dia_min != dia_max)
             {
-                A++;
+                Console.Write($"{dia_min} ");
+                Thread.Sleep(500);
+                Console.Clear();
+                dia_min++;
             }
-            return A;
+            return dia_min;
         }
         public int Decrement_()
         {
-            while(A > dia_min)
+            while(dia_max != dia_min)
             {
-                A--;
+                Console.Write($"{dia_max} ");
+                Thread.Sleep(500);
+                Console.Clear();
+                dia_max--;
             }
-            return A;
+            return dia_max;
         }
-        private int A
-        {
-            get
-            {
-                if (diapason(a, dia_min, dia_max)) {
-                    Console.WriteLine(a);
-                    return a;
-                } else
-                {
-                    throw new ArgumentOutOfRangeException("Нарушение диапазона.");
-                }
-            }
-            set
-            {
-                if(diapason(a, dia_min, dia_max))
-                {
-                    a = value;
-                } else
-                {
-                    throw new ArgumentOutOfRangeException("Нарушение диапазона.");
-                }
-            }
-        }
-        private bool diapason(int a, int dia_min, int dia_max)
-        {
-            if (a >= dia_min && a <= dia_max && dia_min < dia_max)
-            {
-                return true;
-            }
-            return false;
-        }
+        //private int A
+        //{
+        //    get
+        //    {
+        //        if (diapason(dia_min, dia_max)) {                    
+        //            return dia_min;
+        //        } else
+        //        {
+        //            throw new ArgumentOutOfRangeException("Нарушение диапазона.");
+        //        }
+        //    }
+        //    set
+        //    {
+        //        if(diapason(dia_min, dia_max))
+        //        {
+        //            dia_min = value;
+        //        } else
+        //        {
+        //            throw new ArgumentOutOfRangeException("Нарушение диапазона.");
+        //        }
+        //    }
+        //}
+        //private bool diapason(int dia_min, int dia_max)
+        //{
+        //    if (dia_min < dia_max)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
     class Program
     {
         static void Main(string[] args)
         {
-            Counter obj = new Counter(15, -15, 321);
-            Console.WriteLine($"Положение точки A :\n{obj.Decrement_()}");
+            Console.WriteLine("Введите диапазон минимального и максимального значений:");
+            int a, b;
+            a = int.Parse(Console.ReadLine());
+            b = int.Parse(Console.ReadLine());
+            Counter obj = new Counter(a, b);
+            switch(int.Parse(Console.ReadLine()))
+            {
+                case 1:
+                    Console.WriteLine($"{obj.Increment_()}");
+                    break;
+                case 2:
+                    Console.WriteLine($"{obj.Decrement_()}");
+                    break;
+                case 3:
+                    Console.Write($"\nДекремент:{obj.Decrement_()}\n");
+
+                    Console.Write($"\nИнкремент:{obj.Increment_()}\n");
+                    break;
+            }
             Console.ReadLine();
         }
     }
