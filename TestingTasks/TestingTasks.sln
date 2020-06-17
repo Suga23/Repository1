@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Counter", "Counter\Counter.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicArray", "DynamicArray\DynamicArray.csproj", "{A0F81D3A-EE29-463C-8F22-C0E9F1BEF4EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_1", "_1\_1.csproj", "{62261299-1A46-45CF-B7D8-6B4B66E0DC84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A0F81D3A-EE29-463C-8F22-C0E9F1BEF4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0F81D3A-EE29-463C-8F22-C0E9F1BEF4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0F81D3A-EE29-463C-8F22-C0E9F1BEF4EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62261299-1A46-45CF-B7D8-6B4B66E0DC84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62261299-1A46-45CF-B7D8-6B4B66E0DC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62261299-1A46-45CF-B7D8-6B4B66E0DC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62261299-1A46-45CF-B7D8-6B4B66E0DC84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
