@@ -13,10 +13,10 @@ using System.Xml.Schema;
 
 namespace DynamicArray
 {
-    class MainArray1
+    public class MainArray1
     {
         int[] arr;
-      public  int Length;
+        public  int Length;
         public MainArray1(int size)
         {
             arr = new int[size];
