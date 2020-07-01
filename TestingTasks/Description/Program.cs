@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using DynamicArray;
 /* Составить описание класса для определения одномерных массивов 
  * строк фиксированной длины. Предусмотреть контроль выхода за 
  * пределы массива, возможность обращения к отдельным строкам массива 
@@ -22,66 +21,57 @@ class ArrayContsr
         Length = size;
         arr = new string[size];
     }
-    public int this[int index]
+    public string this[int index]
     {
         get
         {
-            if (IndexCheck(index))
+            try
             {
-                return index;
-            } else
-            {
-                throw new ArgumentOutOfRangeException("Выход за границы массива.");
+                if (IndexCheck(index))
+                {
+                    return arr[index];
+                }
             }
+            catch(IndexOutOfRangeException)
+            {
+                Console.WriteLine("Массив не сконструирован.");
+            }
+            return null;
         }
         set
         {
+            try {
             if(IndexCheck(index))
             {
-                index = value;
-            } else
+                arr[index] = value;
+            }
+            }
+            catch(IndexOutOfRangeException e)
             {
-                throw new ArgumentOutOfRangeException("Выход за границы массива.");
+                Console.WriteLine($"Ошибка: {e.Message}");
             }
         }
     }
     public void ArrayUnion(string[] str1, params string[] str2)
     {
         Console.WriteLine("Создание нового массива: ");
-        string[] StrArr = new string[str1.Length + str2.Length + 1];
-        //for (int i = 0; i < StrArr.Length; i++)
-        //{
-        //    //str1[i].Concat(str2[i]).ToArray()
-        //    if (str1[i] == str2[i])
-        //    {
-        //        StrArr[i] += str1[i];
-        //        Console.WriteLine(StrArr[i]);
-        //    } else if (StrArr[i] == null)
-        //    {
-        //        StrArr[i] += str2[i];
-        //        Console.WriteLine(StrArr[i]);
-        //    }
-        //    {
-        //        StrArr[i] += str1[i];
-        //        Console.WriteLine(StrArr[i]);
-        //    }
-        //}
-        Console.WriteLine($"Длина массива StrArr = {StrArr.Length}");
+        string[] StrArr = str1.Concat(str2).ToArray();
+
         for (int i = 0; i < StrArr.Length; i++)
         {
             Console.WriteLine(StrArr[i]);
         }
     }
-    public void ArrayFill(params string[] str)
-    {
-        Console.WriteLine("\nЗаполнение массива: ");
-        for (int i = 0; i < arr.Length; i++)
-        {
-            arr[i] = str[i];
-            Console.WriteLine($"{arr[i]} ");
-        }
-    }
-    public void TwoArrays(string[] arr1, string[] arr2)
+    //public void ArrayFill()
+    //{
+    //    Console.WriteLine("\nЗаполнение массива: ");
+    //    for (int i = 0; i < arr.Length; i++)
+    //    {
+    //        arr[i] = str[i];
+    //        Console.WriteLine($"{arr[i]} ");
+    //    }
+    //}
+    public void TwoArrays(ArrayContsr arr1, ArrayContsr arr2)
     {
         Console.WriteLine("\nСлияние массивов: ");
         for (int i = 0; i < arr1.Length; i++)
@@ -94,25 +84,25 @@ class ArrayContsr
             Console.WriteLine(arr1[i]);
             }
         }
-    }
-    public void ArrayFinderr(string[] strarr, int a)
+    } 
+    public void Finderr(int a)
     {
-        for (int i = 0; i < strarr.Length; i++)
+        for (int i = 0; i < arr.Length; i++)
         {
             if (i == a)
             {
-                Console.WriteLine($"\nСодержимое индекса {a}: {strarr[a]}");
+                Console.WriteLine($"\nСодержимое индекса {a}: {arr[a]}");
             }
         }
         Console.WriteLine("Весь массив:");
-        for (int i = 0; i < strarr.Length; i++)
+        for (int i = 0; i < arr.Length; i++)
         {
-            Console.WriteLine(strarr[i]);
+            Console.WriteLine(arr[i]);
         }
     }
     private bool IndexCheck(int index)
     {
-        if (index >= 0 && index <= Length)
+        if (index >= 0 && index < Length)
         {
             return true;
         }
@@ -124,20 +114,24 @@ namespace Description
     class Program
     {
         static void Main(string[] args)
-        {
-            string[] rst = new string[3];
+        {           
+            ArrayContsr arr = new ArrayContsr(3);
+            ArrayContsr arr1 = new ArrayContsr(3);
+            string[] rrst = new string[] { "один", "два", "три", "четыре" };
+            for (int i = 0; i < 4; i++)
+            {
+                //string a = Console.ReadLine();
+                arr[i] = rrst[i];
+                Console.WriteLine(arr[i]);
+            }
 
+            string[] rst = new string[] { "четыре", "пять", "шесть" };
             for (int i = 0; i < rst.Length; i++)
             {
-                rst[i] = Console.ReadLine();
+                arr1[i] = rst[i];
             }
-            ArrayContsr arr = new ArrayContsr(3);
-            string[] rrst = new string[] { "один", "два", "три" };
-            arr.ArrayFill(rrst);
-            // Мы создаём метод, который запоняет наш массив словами.
-            arr.ArrayFinderr(rst, 0);
-            arr.TwoArrays(rrst, rst);
-            arr.ArrayUnion(rrst, rst);
+            //arr1.Finderr(2);
+            //arr.TwoArrays(arr, arr1);
             Console.ReadLine();
         }
     }

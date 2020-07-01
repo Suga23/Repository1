@@ -50,36 +50,6 @@ namespace Counter
             }
             return dia_max;
         }
-        //private int A
-        //{
-        //    get
-        //    {
-        //        if (diapason(dia_min, dia_max)) {                    
-        //            return dia_min;
-        //        } else
-        //        {
-        //            throw new ArgumentOutOfRangeException("Нарушение диапазона.");
-        //        }
-        //    }
-        //    set
-        //    {
-        //        if(diapason(dia_min, dia_max))
-        //        {
-        //            dia_min = value;
-        //        } else
-        //        {
-        //            throw new ArgumentOutOfRangeException("Нарушение диапазона.");
-        //        }
-        //    }
-        //}
-        //private bool diapason(int dia_min, int dia_max)
-        //{
-        //    if (dia_min < dia_max)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
     }
     class Program
     {

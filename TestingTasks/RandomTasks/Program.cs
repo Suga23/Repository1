@@ -6,96 +6,162 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class RandomTasks
-{
-    static void Main(string[] args)
+namespace RandomTasks {
+    class MainAr
     {
-        BinaryWriter dataOut;
-        BinaryReader dataIn;
-        string item;
-        int onhand;
-        double cost;
-
-        try
+        string[] str;
+        public int Length;
+        public MainAr(int size)
         {
-            dataOut = new BinaryWriter(new FileStream(@"D:\Inventory.dat", FileMode.Create));
+            str = new string[size];
+            Length = size;
         }
-        catch(IOException exc)
+        public void StrCreator(string el)
         {
-            Console.WriteLine($"Не удаётся открыть файл товарных запасов для ввода");
-            Console.WriteLine($"Причина: {exc.Message}");
-            return;
-        }
-
-        try
-        {
-            dataOut.Write("Молотки");
-            dataOut.Write(10);
-            dataOut.Write(3.95);
-            dataOut.Write("Отвертки");
-            dataOut.Write(18);
-            dataOut.Write(1.50);
-            dataOut.Write("Плоскогубцы");
-            dataOut.Write(5);
-            dataOut.Write(4.95);
-            dataOut.Write("Пилы");
-            dataOut.Write(8);
-            dataOut.Write(8.95);
-        }
-        catch (IOException exc)
-        {
-            Console.WriteLine($"Ошибка записи в файл товарных запасов\nПричина: {exc.Message}");
-        }
-        finally
-        {
-            dataOut.Close();
-        }
-
-        try
-        {
-            dataIn = new BinaryReader(new FileStream(@"D:\Inventory.dat", FileMode.Open));
-        }
-        catch (IOException exc)
-        {
-            Console.WriteLine($"He удается открыть файл товарных запасов для ввода\nПричина: {exc.Message}");
-            return;
-        }
-
-        // Найти предмет, введенный пользователем.
-        Console.Write("Введите наименование для поиска: ");
-        string what = Console.ReadLine();
-
-        try
-        {
-            for (;;)
+            for (int i = 0; i < str.Length; i++)
             {
-                // Читать данные о предмете хранения.
-                item = dataIn.ReadString();
-                onhand = dataIn.ReadInt32();
-                cost = dataIn.ReadDouble();
-
-                //Проверить, совпадает ли он с запрашиваемым предметом. Если совпадает, то отобразить сведения о нем.
-                if (item.Equals(what, StringComparison.OrdinalIgnoreCase))
+                str[i] = el;
+                Console.WriteLine($"Содержимое индекса {i}: {str[i]}");
+            }
+        }
+        public string this[int index] {
+            get 
+            {
+                try {
+                return str[index];                    
+                }
+                catch (IndexOutOfRangeException)
                 {
-                    Console.WriteLine($"{item}: {onhand} штук в наличии. Цена: {cost}:С за штуку");
-                    Console.WriteLine($"Общая стоимость по наименованию <{item}>: {cost * onhand}:С.");
-                    break;
+                    Console.WriteLine("Массив не сконструирован.");
+                }
+                return null;
+            }
+            set
+            {
+                try
+                {
+                    if (StrChecker(index))
+                    {
+                        str[index] = value;
+                    }
+                    //else
+                    //{
+                    //    throw new IndexOutOfRangeException("Индекс находится вне границ массива!");
+                    //}
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    Console.WriteLine($"Ошибка: {e.Message}");
                 }
             }
         }
-        catch (EndOfStreamException)
+        private bool StrChecker(int index)
         {
-            Console.WriteLine("Предмет не найден.");
+            if(index >= 0 && index <= Length)
+            {
+                return true;
+            }
+            return false;
         }
-        catch (IOException exc)
+    }
+    class RandomTasks
+    {
+        static void Main(string[] args)
         {
-            Console.WriteLine("Ошибка чтения из файла товарных запасов");
-            Console.WriteLine($"Причина: {exc.Message}");
-        }
-        finally
-        {
-            dataIn.Close();
-        }
+            MainAr str = new MainAr(3);
+            for (int i = 0; i < 4; i++)
+            {
+                string a = Console.ReadLine();
+                str[i] = a;
+                Console.WriteLine($"Содержимое индекса {i}: {str[i]}");
+            }
+            Console.ReadLine();
+        //BinaryWriter dataOut;
+        //BinaryReader dataIn;
+        //string item;
+        //int onhand;
+        //double cost;
+
+        //try
+        //{
+        //    dataOut = new BinaryWriter(new FileStream(@"D:\Inventory.dat", FileMode.Create));
+        //}
+        //catch(IOException exc)
+        //{
+        //    Console.WriteLine($"Не удаётся открыть файл товарных запасов для ввода");
+        //    Console.WriteLine($"Причина: {exc.Message}");
+        //    return;
+        //}
+
+        //try
+        //{
+        //    dataOut.Write("Молотки");
+        //    dataOut.Write(10);
+        //    dataOut.Write(3.95);
+        //    dataOut.Write("Отвертки");
+        //    dataOut.Write(18);
+        //    dataOut.Write(1.50);
+        //    dataOut.Write("Плоскогубцы");
+        //    dataOut.Write(5);
+        //    dataOut.Write(4.95);
+        //    dataOut.Write("Пилы");
+        //    dataOut.Write(8);
+        //    dataOut.Write(8.95);
+        //}
+        //catch (IOException exc)
+        //{
+        //    Console.WriteLine($"Ошибка записи в файл товарных запасов\nПричина: {exc.Message}");
+        //}
+        //finally
+        //{
+        //    dataOut.Close();
+        //}
+
+        //try
+        //{
+        //    dataIn = new BinaryReader(new FileStream(@"D:\Inventory.dat", FileMode.Open));
+        //}
+        //catch (IOException exc)
+        //{
+        //    Console.WriteLine($"He удается открыть файл товарных запасов для ввода\nПричина: {exc.Message}");
+        //    return;
+        //}
+
+        //// Найти предмет, введенный пользователем.
+        //Console.Write("Введите наименование для поиска: ");
+        //string what = Console.ReadLine();
+
+        //try
+        //{
+        //    for (;;)
+        //    {
+        //        // Читать данные о предмете хранения.
+        //        item = dataIn.ReadString();
+        //        onhand = dataIn.ReadInt32();
+        //        cost = dataIn.ReadDouble();
+
+        //        //Проверить, совпадает ли он с запрашиваемым предметом. Если совпадает, то отобразить сведения о нем.
+        //        if (item.Equals(what, StringComparison.OrdinalIgnoreCase))
+        //        {
+        //            Console.WriteLine($"{item}: {onhand} штук в наличии. Цена: {cost}:С за штуку");
+        //            Console.WriteLine($"Общая стоимость по наименованию <{item}>: {cost * onhand}:С.");
+        //            break;
+        //        }
+        //    }
+        //}
+        //catch (EndOfStreamException)
+        //{
+        //    Console.WriteLine("Предмет не найден.");
+        //}
+        //catch (IOException exc)
+        //{
+        //    Console.WriteLine("Ошибка чтения из файла товарных запасов");
+        //    Console.WriteLine($"Причина: {exc.Message}");
+        //}
+        //finally
+        //{
+        //    dataIn.Close();
+        //}
         //______________________________________
         //BinaryWriter dataOut;
         //BinaryReader dataIn;
@@ -291,5 +357,6 @@ class RandomTasks
         //        Console.WriteLine($"\n{keypress.KeyChar}");
         //    } while (keypress.Key != ConsoleKey.Escape);
         //    Console.WriteLine();
+        }
     }
 }
