@@ -29,6 +29,10 @@ namespace TestingTasks
             Console.WriteLine($"Сумма за вычетом скидки равна {sum}");
             }
         }
+        public void Show()
+        {
+            Console.WriteLine($"{sum}");
+        }
     }
     class Program
     {

@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Counter\Counter.csproj">
-      <Project>{08cb3c41-b5b6-4701-a08e-beea3bc1c590}</Project>
-      <Name>Counter</Name>
+    <ProjectReference Include="..\TestingTasks\TestingTasks.csproj">
+      <Project>{d0eb79c2-0412-4fa6-9133-dc1bd2f0a4e6}</Project>
+      <Name>TestingTasks</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
